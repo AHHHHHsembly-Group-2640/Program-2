@@ -48,29 +48,17 @@ continue:
     	bge $s0, 90, gradeA
     	
     	#Else if scores is greater or euqal to 80, move to another condition 
-    	bge $s0, 80, ifB
+    	bge $s0, 80, gradeB
     	
     	#Else if scores is greater or euqal to 70, move to another condition 
-    	bge $s0, 70, ifC
+    	bge $s0, 70, gradeC
     	
     	#Else if scores is greater or euqal to 60, move to another condition 
-    	bge $s0, 60, ifD
+    	bge $s0, 60, gradeD
     	
-    	#Else if under 60, get grade F
+    	#Else if less or equal to 59, get grade F
     	ble $s0, 59, gradeF
-
-#If Less and equal to 89, get grade B
-ifB:
-	ble $s0, 89, gradeB
-
-#If Less and equal to 79, get grade C
-ifC:
-	ble $s0, 79, gradeC
-
-#If Less and equal to 69, get grade D
-ifD:
-	ble $s0, 69, gradeD
-    	
+	
 gradeA:
 	li $v0, 4
 	la $a0, letterA
@@ -105,7 +93,7 @@ loop:
 	li $v0, 4
 	la $a0, newScore
 	syscall
-
+	
 end:
     	# exit 
     	li $v0, 10     
