@@ -5,7 +5,7 @@
 
 .data
 mainMenu: .asciiz "~~~~~~~~~~~~~~ Main Menu ~~~~~~~~~~~~~~\n(1) Get Letter Grade\n(2) Exit Program\nEnter '1' or '2' for your selection\n"
-enterScore: .asciiz "Please answer a score as an integer value: "
+enterScore: .asciiz "\nPlease answer a score as an integer value: "
 letterA: .asciiz "The Grade is: A"
 letterB: .asciiz "The Grade is: B"
 letterC: .asciiz "The Grade is: C"
@@ -33,7 +33,7 @@ main:
     	beq $s0, 2, end
     	
 continue:
-	#Display Ask user to enter score
+	#Display Ask user to enter the score
     	li $v0, 4	
     	la $a0, enterScore
     	syscall
@@ -42,21 +42,21 @@ continue:
     	li $v0, 5
     	syscall
     	
-    	move $s0, $v0
+    	move $s0, $v0 #move to register $s0
     	
     	#A if greater than or equal to 90
     	bge $s0, 90, gradeA
     	
-    	#Else if scores is greater or euqal to 80, move to another condition 
+    	#Else B if score is greater or euqal to 80, move to another condition 
     	bge $s0, 80, gradeB
     	
-    	#Else if scores is greater or euqal to 70, move to another condition 
+    	#Else C if score is greater or euqal to 70, move to another condition 
     	bge $s0, 70, gradeC
     	
-    	#Else if scores is greater or euqal to 60, move to another condition 
+    	#Else D if score is greater or euqal to 60, move to another condition 
     	bge $s0, 60, gradeD
     	
-    	#Else if less or equal to 59, get grade F
+    	#Else F if score is less or equal to 59, get grade F
     	ble $s0, 59, gradeF
 	
 gradeA:
@@ -88,11 +88,21 @@ gradeF:
 	la $a0, letterF
 	syscall
 	j loop
-	
+
+#loop to ask a new score if user decide to continue	
 loop:
 	li $v0, 4
 	la $a0, newScore
 	syscall
+	
+	#Get user input's character
+	li $v0, 12
+	syscall
+	
+	move $t0, $v0
+	
+	li $t1, 'y'
+	beq $t1, $t0, continue
 	
 end:
     	# exit 
