@@ -7,7 +7,7 @@
 #-a way for the user to continue getting letter grades or choose to exit
 #-invalid input handling 
 
-#Github link: https://github.com/AHHHHHsembly-Group-2640/Program-2/blob/0f88be4a56721fc1eb0a4e7f2ce1be21ef0d666e/Program2.asm2
+#Github link: https://github.com/AHHHHHsembly-Group-2640/Program-2
 
 .macro dashLine
     	li $v0, 4	
