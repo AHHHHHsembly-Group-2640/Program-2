@@ -74,9 +74,6 @@ continue:
     	#Re-prompt the user if error input (Less than 0)
     	blt $s0, 0, integerHandling
     	
-    	#Re-prompt the user if error input (Less than 0)
-    	bgt $s0, 100, integerHandling
-    	
     	#A if greater than or equal to 90
     	bge $s0, 90, gradeA
     	
